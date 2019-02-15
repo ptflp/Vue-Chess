@@ -1,13 +1,6 @@
 <template>
   <div class="page-container">
     <chessboard class="chessboard" :iconDir="iconDir" :pgn="pgn" :side="side" v-on:change="boardChange($event)"></chessboard>
-    <div class="controls">
-      <a class="button" v-on:click="randomMove()">Random</a>
-      <a class="button" v-on:click="reset()">Reset</a>
-      <a class="button" v-on:click="swapSides()">Swap</a>
-      <pre>{{ game.ascii() }}</pre>
-      <chat></chat>
-    </div>
   </div>
 </template>
 

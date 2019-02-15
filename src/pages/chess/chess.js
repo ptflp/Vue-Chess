@@ -28,8 +28,8 @@ export default {
     }
   },
   created () {
-    this.newGame()
     this.stockfishApi = new StockfishApi()
+    this.newGame()
     // this.ai = new Ai()
     // this.socket = new Socket(this.userid)
 
@@ -42,6 +42,19 @@ export default {
     newGame () {
       const chess = Chess()
       this.pgn = chess.pgn()
+      this.stockfishApi.getBestMove(this.game.fen()).then(response => {
+        console.log(response)
+        let data = response.data;
+        let i = 0;
+        let a = this;
+        var interval = setInterval(function() {
+          if (i < data.length) {
+            a.move(data[i].move);
+            i++;
+          }
+        },1800);
+
+      })
     },
     boardChange (pgn) {
       this.pgn = pgn
@@ -51,7 +64,7 @@ export default {
       } else if (this.game.turn() !== this.side) {
         this.stockfishApi.getBestMove(this.game.fen()).then(response => {
           console.log(response)
-          this.move(response.data)
+          this.move('e5e10')
         })
         // const history = this.game.history()
         // const lastMove = history[history.length - 1]
