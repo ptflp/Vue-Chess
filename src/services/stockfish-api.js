@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default class {
-  constructor (url = 'http://avlek.ykt.ru:8089') {
+  constructor (url = 'http://92.53.77.59:8089') {
     this.baseurl = url
   }
 
