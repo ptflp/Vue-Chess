@@ -47,9 +47,6 @@ export default {
       let moves = [];
       let loop = setInterval(function() {
         a.stockfishApi.getBestMove(a.game.fen()).then(response => {
-          if (response.data.length == 0) {
-            a.newGame();
-          }
           moves = response.data;
 
         })
