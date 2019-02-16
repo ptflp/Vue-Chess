@@ -53,7 +53,7 @@ export default {
           moves = response.data;
 
         })
-      }, 1500);
+      }, 1200);
       var interval = setInterval(function () {
         if (i < moves.length) {
           getMessage(moves[i].status);
@@ -61,22 +61,22 @@ export default {
           a.move(moves[i].move);
           i++;
         }
-      }, 400);
+      }, 900);
     },
     boardChange (pgn) {
       this.pgn = pgn
 
-      if (this.twoplayer) {
-        setTimeout(this.swapSides, 1000)
-      } else if (this.game.turn() !== this.side) {
-        this.stockfishApi.getBestMove(this.game.fen()).then(response => {
-          console.log(response)
-          this.move('e5e10')
-        })
-        // const history = this.game.history()
-        // const lastMove = history[history.length - 1]
-        // this.socket.emitMove(lastMove)
-      }
+      // if (this.twoplayer) {
+      //   setTimeout(this.swapSides, 1000)
+      // } else if (this.game.turn() !== this.side) {
+      //   this.stockfishApi.getBestMove(this.game.fen()).then(response => {
+      //     console.log(response)
+      //     this.move('e5e10')
+      //   })
+      //   // const history = this.game.history()
+      //   // const lastMove = history[history.length - 1]
+      //   // this.socket.emitMove(lastMove)
+      // }
     },
     swapSides () {
       if (this.side === 'w') {
