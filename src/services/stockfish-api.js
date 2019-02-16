@@ -6,6 +6,6 @@ export default class {
   }
 
   getBestMove (fen, difficulty = 3) {
-    return axios.get(`${this.baseurl}/api/getpreparedmoves`, { params: { fen, difficulty } })
+    return axios.get(`${this.baseurl}/web/getmoves`, { params: { fen, difficulty } })
   }
 }
