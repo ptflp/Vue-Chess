@@ -8,6 +8,15 @@
   </head>
   <body>
     <div id="app"></div>
+    <script>
+      function getMessage(status) {
+        if (typeof Android != "undefined") {
+          Android.postMessage(JSON.stringify({'text': status}));
+        }
+        console.log(status);
+        return status;
+      }
+    </script>
     <!-- built files will be auto injected -->
   </body>
 </html>

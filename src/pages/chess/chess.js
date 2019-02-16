@@ -42,19 +42,24 @@ export default {
     newGame () {
       const chess = Chess()
       this.pgn = chess.pgn()
-      this.stockfishApi.getBestMove(this.game.fen()).then(response => {
-        console.log(response)
-        let data = response.data;
-        let i = 0;
-        let a = this;
-        var interval = setInterval(function() {
-          if (i < data.length) {
-            a.move(data[i].move);
-            i++;
-          }
-        },1800);
+      let i = 0;
+      let a = this;
+      let moves = [];
+      let loop = setInterval(function() {
+        a.stockfishApi.getBestMove(a.game.fen()).then(response => {
+          moves = response.data;
 
-      })
+        })
+      }, 500);
+      var interval = setInterval(function () {
+        console.log(moves.length);
+        if (i < moves.length) {
+          getMessage(moves[i].status);
+          console.log(moves[i].move);
+          a.move(moves[i].move);
+          i++;
+        }
+      }, 400);
     },
     boardChange (pgn) {
       this.pgn = pgn

@@ -1,6 +1,9 @@
 <template>
   <div class="page-container">
     <chessboard class="chessboard" :iconDir="iconDir" :pgn="pgn" :side="side" v-on:change="boardChange($event)"></chessboard>
+    <div class="controls">
+      <pre>{{ game.ascii() }}</pre>
+    </div>
   </div>
 </template>
 
