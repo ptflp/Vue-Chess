@@ -47,12 +47,14 @@ export default {
       let moves = [];
       let loop = setInterval(function() {
         a.stockfishApi.getBestMove(a.game.fen()).then(response => {
+          if (response.data.length == 0) {
+            a.newGame();
+          }
           moves = response.data;
 
         })
-      }, 500);
+      }, 1500);
       var interval = setInterval(function () {
-        console.log(moves.length);
         if (i < moves.length) {
           getMessage(moves[i].status);
           console.log(moves[i].move);
